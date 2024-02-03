@@ -1,0 +1,76 @@
+***
+You will be given a list of integers, , and a single integer . You must create an array of length  from elements of  such that its unfairness is minimized. Call that array . Unfairness of an array is calculated as
+
+Where:
+- max denotes the largest integer in 
+- min denotes the smallest integer in 
+
+Example
+
+
+
+Pick any two elements, say .
+
+Testing for all pairs, the solution  provides the minimum unfairness.
+
+Note: Integers in  may not be unique.
+
+Function Description
+
+Complete the maxMin function in the editor below.
+maxMin has the following parameter(s):
+
+int k: the number of elements to select
+int arr[n]:: an array of integers
+Returns
+
+int: the minimum possible unfairness
+Input Format
+
+The first line contains an integer , the number of elements in array .
+The second line contains an integer .
+Each of the next  lines contains an integer  where .
+
+Constraints
+
+Sample Input 0
+
+7
+3
+10
+100
+300
+200
+1000
+20
+30
+Sample Output 0
+
+20
+***
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt(), k = in.nextInt();
+        int[] x = new int[n];
+        for(int i = 0; i < n; i++) x[i] = in.nextInt();
+        Arrays.sort(x);
+        System.out.println(f(n, k, x));
+    }
+    
+    private static int f(int n, int k, int[] x){
+        int min = 100000000;
+        for(int i = 0; i + k-1 < x.length; i++){
+            if(x[i+k-1] - x[i] < min) min = x[i+k-1]-x[i];
+        }
+        return min;
+    }
+}
